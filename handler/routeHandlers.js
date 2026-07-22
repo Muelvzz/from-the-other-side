@@ -11,3 +11,7 @@ export const handleGet = async (res) => {
     stringifiedData
   )
 }
+
+export const handlePost = async (req, res) => {
+  return "POST request received!"
+}
