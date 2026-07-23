@@ -2,6 +2,7 @@ import { getData } from "../utils/getData.js"
 import { sendResponse } from "../utils/sendResponse.js"
 import { parseJsonBody } from "../utils/parseJsonBody.js"
 import { addNewSighting } from "../public/addNewSighting.js"
+import { sanitizeInput } from "../utils/sanitizeInput.js"
 
 export const handleGet = async (res) => {
 
@@ -20,12 +21,13 @@ export const handlePost = async (req, res) => {
 
   try {
     const parsedBody = await parseJsonBody(req)
-    await addNewSighting(parsedBody)
+    const sanitizedBody = sanitizeInput(parsedBody)
+    await addNewSighting(sanitizedBody)
     sendResponse(
       res, 
       201, 
       "application/json", 
-      JSON.stringify(parseJsonBody)
+      JSON.stringify(sanitizedBody)
     )
   } catch (err) {
     sendResponse(
