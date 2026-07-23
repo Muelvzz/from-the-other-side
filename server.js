@@ -19,7 +19,7 @@ const server = http.createServer(async (req, res) => {
     }
 
   }
-  
+
   else if (!req.url.startsWith("/api")) {
     return await serveStatic(req, res, __dirname)
     }
